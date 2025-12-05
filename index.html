@@ -1,370 +1,433 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>古韻流芳 | 中國古詩詞賞析</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&display=swap" rel="stylesheet">
+    <title>中国古词赏析</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;700&display=swap">
     <style>
-        :root {
-            --bg-color: #f4f1ea; /* 宣紙色 */
-            --text-color: #2c2c2c; /* 墨色 */
-            --accent-color: #8b0000; /* 硃砂紅 */
-            --secondary-text: #5d5d5d;
-            --card-bg: rgba(255, 255, 255, 0.6);
-            --border-radius: 8px;
-        }
-
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-
+        
         body {
-            font-family: 'Noto Serif TC', 'Songti TC', serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.8;
-            background-image: url("https://www.transparenttextures.com/patterns/rice-paper-2.png"); /* 宣紙紋理 */
+            font-family: 'Noto Serif SC', serif;
+            background-color: #fef9f3;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><path fill="%23f0e6d3" fill-opacity="0.3" d="M0,0 L100,0 L100,100 L0,100 Z"/><path fill="none" stroke="%23d4b483" stroke-width="0.5" d="M20,20 L80,20 L80,80 L20,80 Z"/></svg>');
             min-height: 100vh;
+        }
+        
+        .container {
             display: flex;
             flex-direction: column;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
         }
-
-        /* 頂部導航 */
+        
         header {
             text-align: center;
-            padding: 2rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 30px 0;
+            border-bottom: 1px solid #d4b483;
+            margin-bottom: 30px;
         }
-
-        header h1 {
-            font-size: 2rem;
-            letter-spacing: 0.5rem;
-            margin-bottom: 0.5rem;
+        
+        h1 {
+            font-family: 'Ma Shan Zheng', cursive;
+            font-size: 3.5rem;
+            color: #8b4513;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+            letter-spacing: 5px;
         }
-
-        header .subtitle {
-            font-size: 0.9rem;
-            color: var(--secondary-text);
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #a0522d;
+            font-style: italic;
         }
-
-        /* 主容器 */
-        main {
-            flex: 1;
-            max-width: 900px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-            width: 100%;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        /* 左側：詩詞展示區 */
-        .poem-card {
-            background: var(--card-bg);
-            padding: 3rem 2rem;
-            border-radius: var(--border-radius);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            text-align: center;
-            position: relative;
+        
+        .main-content {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid rgba(0,0,0,0.05);
+            flex-wrap: wrap;
+            gap: 30px;
+            flex: 1;
         }
-
-        /* 印章裝飾 */
-        .seal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border: 2px solid var(--accent-color);
-            color: var(--accent-color);
-            font-size: 12px;
-            line-height: 36px;
-            text-align: center;
-            border-radius: 4px;
-            font-weight: bold;
-            opacity: 0.8;
-            user-select: none;
+        
+        .poem-list {
+            flex: 1;
+            min-width: 300px;
+            background-color: rgba(255, 253, 248, 0.9);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8d9c5;
         }
-
+        
+        .poem-display {
+            flex: 2;
+            min-width: 300px;
+            background-color: rgba(255, 253, 248, 0.9);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            border: 1px solid #e8d9c5;
+        }
+        
+        h2 {
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #8b4513;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e8d9c5;
+        }
+        
+        .poem-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .poem-item:hover {
+            background-color: #f5ebdd;
+            transform: translateX(5px);
+        }
+        
+        .poem-item.active {
+            background-color: #f0e6d3;
+            border-left: 4px solid #8b4513;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+        }
+        
         .poem-title {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #8b4513;
+            margin-bottom: 5px;
         }
-
+        
         .poem-author {
             font-size: 1rem;
-            color: var(--secondary-text);
-            margin-bottom: 2rem;
+            color: #a0522d;
+            font-style: italic;
         }
-
+        
         .poem-content {
-            font-size: 1.4rem;
-            white-space: pre-wrap; /* 保留換行 */
-            line-height: 2.2;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            text-align: center;
+            padding: 20px;
+            background-color: #f9f4eb;
+            border-radius: 8px;
+            border: 1px dashed #d4b483;
         }
-
-        /* 右側：賞析區 */
+        
+        .poem-line {
+            margin-bottom: 10px;
+        }
+        
+        .poem-analysis {
+            margin-top: 30px;
+        }
+        
         .analysis-section {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: var(--border-radius);
-            border: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 25px;
         }
-
-        /* 標籤頁切換 */
-        .tabs {
+        
+        .analysis-section h3 {
+            color: #8b4513;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            padding-left: 10px;
+            border-left: 3px solid #d4b483;
+        }
+        
+        .analysis-section p {
+            text-indent: 2em;
+            margin-bottom: 10px;
+        }
+        
+        .author-info {
             display: flex;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 1.5rem;
+            align-items: center;
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #f9f4eb;
+            border-radius: 8px;
         }
-
-        .tab-btn {
-            padding: 0.5rem 1rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-            font-size: 1rem;
-            color: var(--secondary-text);
-            transition: all 0.3s;
-        }
-
-        .tab-btn.active {
-            color: var(--accent-color);
-            border-bottom: 2px solid var(--accent-color);
-            font-weight: bold;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        .tab-content h3 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent-color);
-            border-left: 3px solid var(--accent-color);
-            padding-left: 0.5rem;
-        }
-
-        .tab-content p {
-            margin-bottom: 1rem;
-            font-size: 1rem;
-            text-align: justify;
-        }
-
-        /* 控制按鈕 */
-        .controls {
-            grid-column: 1 / -1;
+        
+        .author-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: #d4b483;
             display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 1rem;
-            margin-top: 1rem;
+            margin-right: 20px;
+            font-size: 2.5rem;
+            color: #8b4513;
+            font-family: 'Ma Shan Zheng', cursive;
+            flex-shrink: 0;
         }
-
-        .btn {
-            padding: 0.6rem 1.5rem;
-            background-color: var(--text-color);
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-family: inherit;
-            transition: background 0.3s;
+        
+        .author-details h3 {
+            color: #8b4513;
+            margin-bottom: 5px;
         }
-
-        .btn:hover {
-            background-color: var(--accent-color);
-        }
-
+        
         footer {
             text-align: center;
-            padding: 2rem;
-            font-size: 0.8rem;
-            color: var(--secondary-text);
-            margin-top: auto;
+            padding: 25px 0;
+            margin-top: 40px;
+            border-top: 1px solid #d4b483;
+            color: #a0522d;
+            font-size: 0.9rem;
         }
-
-        /* 動畫 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* 響應式設計 */
+        
         @media (max-width: 768px) {
-            main {
-                grid-template-columns: 1fr;
+            .main-content {
+                flex-direction: column;
             }
-            .poem-content {
-                font-size: 1.2rem;
+            
+            h1 {
+                font-size: 2.5rem;
             }
+            
+            .poem-list, .poem-display {
+                width: 100%;
+            }
+        }
+        
+        .decoration {
+            text-align: center;
+            margin: 20px 0;
+            color: #d4b483;
+            font-size: 1.5rem;
+            letter-spacing: 10px;
         }
     </style>
 </head>
 <body>
-
-<header>
-    <h1>古韻流芳</h1>
-    <div class="subtitle">Classic Chinese Poetry Appreciation</div>
-</header>
-
-<main>
-    <article class="poem-card" id="poem-display">
-        <div class="seal">賞析</div>
-        <h2 class="poem-title" id="p-title">靜夜思</h2>
-        <div class="poem-author">
-            <span id="p-dynasty">〔唐〕</span>
-            <span id="p-author">李白</span>
-        </div>
-        <div class="poem-content" id="p-content">
-床前明月光，
-疑是地上霜。
-舉頭望明月，
-低頭思故鄉。
-        </div>
-    </article>
-
-    <aside class="analysis-section">
-        <div class="tabs">
-            <button class="tab-btn active" onclick="switchTab('notes')">註釋</button>
-            <button class="tab-btn" onclick="switchTab('translation')">譯文</button>
-            <button class="tab-btn" onclick="switchTab('appreciation')">賞析</button>
-        </div>
-
-        <div id="notes" class="tab-content active">
-            <h3>詞語註釋</h3>
-            <div id="c-notes">
-                <p>1. <strong>疑：</strong> 懷疑。</p>
-                <p>2. <strong>舉頭：</strong> 抬頭。</p>
-            </div>
-        </div>
-
-        <div id="translation" class="tab-content">
-            <h3>白話譯文</h3>
-            <div id="c-translation">
-                <p>明亮的月光灑在床前的窗戶紙上，好像地上泛起了一層白霜。</p>
-                <p>我禁不住抬起頭來，看那天窗外空中的一輪明月，不由得低頭沉思，想起遠方的家鄉。</p>
-            </div>
-        </div>
-
-        <div id="appreciation" class="tab-content">
-            <h3>深度賞析</h3>
-            <div id="c-appreciation">
-                <p>這首詩寫的是在寂靜的月夜，詩人思念故鄉的感受。</p>
-                <p>詩的前兩句，是寫詩人在作客他鄉的特定環境中一剎那間所產生的錯覺。一個獨處他鄉的人，白天奔波忙碌，倒還能沖淡離愁，然而一到夜深人靜的時候，心頭就難免泛起陣陣思念故鄉的波瀾。</p>
-            </div>
-        </div>
-    </aside>
-
-    <div class="controls">
-        <button class="btn" onclick="prevPoem()">上一首</button>
-        <button class="btn" onclick="nextPoem()">下一首</button>
-    </div>
-</main>
-
-<footer>
-    <p>© 2025 古韻流芳 | 傳承中華文化</p>
-</footer>
-
-<script>
-    // 詩詞數據庫
-    const poems = [
-        {
-            title: "靜夜思",
-            dynasty: "〔唐〕",
-            author: "李白",
-            content: "床前明月光，\n疑是地上霜。\n舉頭望明月，\n低頭思故鄉。",
-            notes: "<p><strong>舉頭：</strong> 抬頭。</p><p><strong>思：</strong> 思念。</p>",
-            translation: "<p>明亮的月光灑在床前的窗戶紙上，好像地上泛起了一層白霜。我禁不住抬起頭來，看那天窗外空中的一輪明月，不由得低頭沉思，想起遠方的家鄉。</p>",
-            appreciation: "<p>這首詩描寫了客居他鄉的遊子在秋夜裡的思鄉之情。詩中運用比喻手法，將月光比作霜，營造出一種冷清、孤寂的氛圍。</p>"
-        },
-        {
-            title: "江雪",
-            dynasty: "〔唐〕",
-            author: "柳宗元",
-            content: "千山鳥飛絕，\n萬徑人蹤滅。\n孤舟蓑笠翁，\n獨釣寒江雪。",
-            notes: "<p><strong>絕：</strong> 無，沒有。</p><p><strong>徑：</strong> 小路。</p><p><strong>蓑笠（suō lì）：</strong> 蓑衣和斗笠，古代防雨雪的用具。</p>",
-            translation: "<p>所有的山上，飛鳥的身影已經絕跡，所有的小路，不見人的蹤影。江面孤舟上，一位披戴著蓑笠的老翁，獨自在大雪覆蓋的寒冷江面上垂釣。</p>",
-            appreciation: "<p>這首詩描繪了一幅寄寓著詩人高傲情懷的寒江獨釣圖。詩人通過對山水景物的描寫，展現了自己不與世俗同流合污的孤高品格。</p>"
-        },
-        {
-            title: "水調歌頭",
-            dynasty: "〔宋〕",
-            author: "蘇軾",
-            content: "明月幾時有？把酒問青天。\n不知天上宮闕，今夕是何年。\n我欲乘風歸去，又恐瓊樓玉宇，\n高處不勝寒。\n起舞弄清影，何似在人間。",
-            notes: "<p><strong>宮闕：</strong> 宮殿。</p><p><strong>勝（shēng）：</strong> 經得住。</p><p><strong>弄：</strong> 賞玩。</p>",
-            translation: "<p>明月從什麼時候才開始出現的？我端起酒杯遙問蒼天。不知道在天上的宮殿，今天晚上是哪一年。我想要乘御清風回到天上，又恐怕在美玉砌成的樓宇，受不住高聳九天的寒冷。</p>",
-            appreciation: "<p>此詞是中秋望月懷人之作，表達了對胞弟蘇轍的無限思念。詞人運用形象的描繪和浪漫主義的想像，緊緊圍繞中秋之月展開描寫、抒情和議論，從天上與人間、月與人、空間與時間這些相聯繫的範疇進行思考。</p>"
-        }
-    ];
-
-    let currentIndex = 0;
-
-    // 切換標籤頁功能
-    function switchTab(tabId) {
-        // 隱藏所有內容
-        document.querySelectorAll('.tab-content').forEach(content => {
-            content.classList.remove('active');
-        });
-        // 取消所有按鈕激活狀態
-        document.querySelectorAll('.tab-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-
-        // 顯示選中內容並激活按鈕
-        document.getElementById(tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
-
-    // 渲染詩詞
-    function renderPoem(index) {
-        const poem = poems[index];
+    <div class="container">
+        <header>
+            <h1>中国古词赏析</h1>
+            <div class="subtitle">感受古典诗词之美，品味千年文化韵味</div>
+            <div class="decoration">※ ※ ※</div>
+        </header>
         
-        // 更新左側詩詞卡片
-        document.getElementById('p-title').innerText = poem.title;
-        document.getElementById('p-dynasty').innerText = poem.dynasty;
-        document.getElementById('p-author').innerText = poem.author;
-        document.getElementById('p-content').innerText = poem.content;
+        <main class="main-content">
+            <section class="poem-list">
+                <h2>词作精选</h2>
+                <div id="poem-list-container">
+                    <!-- 词作列表将通过JavaScript动态生成 -->
+                </div>
+            </section>
+            
+            <section class="poem-display">
+                <h2 id="current-poem-title">《水调歌头·明月几时有》</h2>
+                
+                <div class="author-info">
+                    <div class="author-avatar" id="author-avatar">苏</div>
+                    <div class="author-details">
+                        <h3 id="author-name">苏轼</h3>
+                        <p id="author-dynasty">北宋文学家</p>
+                        <p id="author-bio">字子瞻，号东坡居士，唐宋八大家之一</p>
+                    </div>
+                </div>
+                
+                <div class="poem-content" id="poem-content">
+                    <!-- 词内容将通过JavaScript动态生成 -->
+                </div>
+                
+                <div class="poem-analysis">
+                    <div class="analysis-section">
+                        <h3>作品赏析</h3>
+                        <p id="poem-analysis">此词是中秋望月怀人之作，表达了对胞弟苏辙的无限怀念。词人运用形象描绘手法，勾勒出一种皓月当空、亲人千里、孤高旷远的境界氛围，反衬自己遣世独立的意绪和往昔的神话传说融合一处，在月的阴晴圆缺当中，渗进浓厚的哲学意味，可以说是一首将自然和社会高度契合的感喟作品。</p>
+                    </div>
+                    
+                    <div class="analysis-section">
+                        <h3>创作背景</h3>
+                        <p id="poem-background">这首词是宋神宗熙宁九年（1076年）中秋节作者在密州时所作。苏轼曾经要求调任到离苏辙较近的地方为官，熙宁七年（1074年）苏轼被调到密州任职。到密州后，这一愿望仍无法实现。公元1076年的中秋，词人面对一轮明月，心潮起伏，于是乘酒兴正酣，挥笔写下了这首名篇。</p>
+                    </div>
+                    
+                    <div class="analysis-section">
+                        <h3>艺术特色</h3>
+                        <p id="poem-features">词以月起兴，以与其弟苏辙七年未见之情为基础，围绕中秋明月展开想象和思考，把人世间的悲欢离合之情纳入对宇宙人生的哲理性追寻之中，反映了作者复杂而又矛盾的思想感情，又表现出作者热爱生活与积极向上的乐观精神。</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>中国古词赏析 · 传承中华文化精髓 · 本页面仅供学习欣赏使用</p>
+            <p>数据来源于公开的古诗词资料</p>
+        </footer>
+    </div>
 
-        // 更新右側賞析內容 (使用 innerHTML 以支持 HTML 標籤)
-        document.getElementById('c-notes').innerHTML = poem.notes;
-        document.getElementById('c-translation').innerHTML = poem.translation;
-        document.getElementById('c-appreciation').innerHTML = poem.appreciation;
-    }
+    <script>
+        // 古词数据
+        const poems = [
+            {
+                id: 1,
+                title: "水调歌头·明月几时有",
+                author: "苏轼",
+                dynasty: "北宋",
+                authorBio: "字子瞻，号东坡居士，唐宋八大家之一",
+                content: `明月几时有？把酒问青天。
+不知天上宫阙，今夕是何年。
+我欲乘风归去，又恐琼楼玉宇，高处不胜寒。
+起舞弄清影，何似在人间。
 
-    // 上一首
-    function prevPoem() {
-        currentIndex = (currentIndex - 1 + poems.length) % poems.length;
-        renderPoem(currentIndex);
-    }
+转朱阁，低绮户，照无眠。
+不应有恨，何事长向别时圆？
+人有悲欢离合，月有阴晴圆缺，此事古难全。
+但愿人长久，千里共婵娟。`,
+                analysis: "此词是中秋望月怀人之作，表达了对胞弟苏辙的无限怀念。词人运用形象描绘手法，勾勒出一种皓月当空、亲人千里、孤高旷远的境界氛围，反衬自己遣世独立的意绪和往昔的神话传说融合一处，在月的阴晴圆缺当中，渗进浓厚的哲学意味，可以说是一首将自然和社会高度契合的感喟作品。",
+                background: "这首词是宋神宗熙宁九年（1076年）中秋节作者在密州时所作。苏轼曾经要求调任到离苏辙较近的地方为官，熙宁七年（1074年）苏轼被调到密州任职。到密州后，这一愿望仍无法实现。公元1076年的中秋，词人面对一轮明月，心潮起伏，于是乘酒兴正酣，挥笔写下了这首名篇。",
+                features: "词以月起兴，以与其弟苏辙七年未见之情为基础，围绕中秋明月展开想象和思考，把人世间的悲欢离合之情纳入对宇宙人生的哲理性追寻之中，反映了作者复杂而又矛盾的思想感情，又表现出作者热爱生活与积极向上的乐观精神。"
+            },
+            {
+                id: 2,
+                title: "声声慢·寻寻觅觅",
+                author: "李清照",
+                dynasty: "南宋",
+                authorBio: "号易安居士，宋代婉约词派代表",
+                content: `寻寻觅觅，冷冷清清，凄凄惨惨戚戚。
+乍暖还寒时候，最难将息。
+三杯两盏淡酒，怎敌他、晚来风急！
+雁过也，正伤心，却是旧时相识。
 
-    // 下一首
-    function nextPoem() {
-        currentIndex = (currentIndex + 1) % poems.length;
-        renderPoem(currentIndex);
-    }
+满地黄花堆积，憔悴损，如今有谁堪摘？
+守着窗儿，独自怎生得黑！
+梧桐更兼细雨，到黄昏、点点滴滴。
+这次第，怎一个愁字了得！`,
+                analysis: "这首词通过描写残秋所见、所闻、所感，抒发自己因国破家亡、天涯沦落而产生的孤寂落寞、悲凉愁苦的心绪，具有浓厚的时代色彩。作品在结构上打破了上下片的局限，一气贯注，着意渲染愁情，如泣如诉，感人至深。",
+                background: "此词是李清照后期的作品，作于南渡以后，具体写作时间待考。公元1127年（北宋靖康二年）金兵入侵中原，掳走徽、钦二帝，赵宋王朝被迫南逃。后来，李清照之夫赵明诚出任建康知府。一天夜里，城中爆发叛乱，赵明诚不思平叛，反而临阵脱逃，被革职。不久后赵明诚病逝，李清照在国破家亡的背景下，写下了这首《声声慢》。",
+                features: "这首词起句便不寻常，一连用七组叠词，极富音乐美。这七组叠词朗读起来，便有一种大珠小珠落玉盘的感觉，徘徊低迷，婉转凄楚，有如听到一个伤心之极的人在低声倾诉。全词一字一泪，风格深沉凝重，哀婉凄苦。"
+            },
+            {
+                id: 3,
+                title: "虞美人·春花秋月何时了",
+                author: "李煜",
+                dynasty: "南唐",
+                authorBio: "南唐后主，千古词帝",
+                content: `春花秋月何时了？往事知多少。
+小楼昨夜又东风，故国不堪回首月明中。
 
-    // 初始化加載第一首
-    window.onload = function() {
-        renderPoem(currentIndex);
-    };
-</script>
+雕栏玉砌应犹在，只是朱颜改。
+问君能有几多愁？恰似一江春水向东流。`,
+                analysis: "此词为李煜的代表作，也是李后主的绝命词。全词以问起，以答结；由问天、问人而到自问，通过凄楚中不无激越的音调和曲折回旋、流走自如的艺术结构，使作者沛然莫御的愁思贯穿始终，形成沁人心脾的美感效应。",
+                background: "此词与《浪淘沙·帘外雨潺潺》均作于李煜被毒死之前，为北宋太宗太平兴国三年（978年），是时李煜归宋已近三年。宋太祖开宝八年（975年），宋军攻破南唐都城金陵，李煜奉表投降，南唐灭亡。三年后，李煜被毒死，该词堪称其绝命词。",
+                features: "这首词通过今昔交错对比，表现了一个亡国之君的无穷的哀怨。词中流露出了李煜不加掩饰的故国之思，全词以明净、凝练、优美、清新的语言，运用比喻、对比、设问等多种修辞手法，高度地概括和淋漓尽致地表达了诗人的真情实感。"
+            },
+            {
+                id: 4,
+                title: "青玉案·元夕",
+                author: "辛弃疾",
+                dynasty: "南宋",
+                authorBio: "字幼安，号稼轩，豪放派词人代表",
+                content: `东风夜放花千树，更吹落、星如雨。
+宝马雕车香满路。
+凤箫声动，玉壶光转，一夜鱼龙舞。
 
+蛾儿雪柳黄金缕，笑语盈盈暗香去。
+众里寻他千百度，
+蓦然回首，那人却在，灯火阑珊处。`,
+                analysis: "此词从极力渲染元宵节绚丽多彩的热闹场面入手，反衬出一个孤高淡泊、超群拔俗、不同于金翠脂粉的女性形象，寄托着作者政治失意后不愿与世俗同流合污的孤高品格。全词构思新颖，语言工巧，曲折含蓄，余味无穷。",
+                background: "这首词作于南宋淳熙元年（1174年）或二年（1175年）。当时，强敌压境，国势日衰，而南宋统治阶级却不思恢复，偏安江左，沉溺于歌舞享乐。辛弃疾欲补天穹，却恨无路请缨。他满腹的激情、哀伤、怨恨，交织成了这幅元夕求索图。",
+                features: "此词的上半阕写元宵之夜的盛况，下半阕写不慕荣华、甘守寂寞的一位美人形象。美人形象便是寄托着作者理想人格的化身。词中的"那人"形象寄寓了作者辛弃疾的政治理想和人格追求，是他自己的一种写照。"
+            },
+            {
+                id: 5,
+                title: "雨霖铃·寒蝉凄切",
+                author: "柳永",
+                dynasty: "北宋",
+                authorBio: "原名三变，婉约派代表人物",
+                content: `寒蝉凄切，对长亭晚，骤雨初歇。
+都门帐饮无绪，留恋处，兰舟催发。
+执手相看泪眼，竟无语凝噎。
+念去去，千里烟波，暮霭沉沉楚天阔。
+
+多情自古伤离别，更那堪，冷落清秋节！
+今宵酒醒何处？杨柳岸，晓风残月。
+此去经年，应是良辰好景虚设。
+便纵有千种风情，更与何人说？`,
+                analysis: "此词上片细腻刻画了情人离别的场景，抒发离情别绪；下片着重摹写想象中别后的凄楚情状。全词遣词造句不着痕迹，绘景直白自然，场面栩栩如生，起承转合优雅从容，情景交融，蕴藉深沉，将情人惜别时的真情实感表达得缠绵悱恻，凄婉动人。",
+                background: "柳永因作词忤仁宗，遂"失意无俚，流连坊曲"，为歌伶乐伎撰写曲子词。此词为柳永从汴京南下时与一位恋人的惜别之作，是表现江湖流落感受中很有代表性的一篇。",
+                features: "这首词以冷落秋景为衬托，淋漓渲染了惜别的场景，进而推测别后的铭心刻骨的思念。层层铺叙，情景交融，委婉多致。全词情调缠绵，低沉伤感，达到了情景交融的艺术境界。"
+            }
+        ];
+
+        // 初始化页面
+        document.addEventListener('DOMContentLoaded', function() {
+            // 生成词作列表
+            const poemListContainer = document.getElementById('poem-list-container');
+            
+            poems.forEach((poem, index) => {
+                const poemItem = document.createElement('div');
+                poemItem.className = `poem-item ${index === 0 ? 'active' : ''}`;
+                poemItem.dataset.id = poem.id;
+                
+                poemItem.innerHTML = `
+                    <div class="poem-title">${poem.title}</div>
+                    <div class="poem-author">${poem.author} · ${poem.dynasty}</div>
+                `;
+                
+                poemItem.addEventListener('click', function() {
+                    // 移除所有active类
+                    document.querySelectorAll('.poem-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // 为当前项添加active类
+                    this.classList.add('active');
+                    
+                    // 加载选中的词作
+                    loadPoem(poem.id);
+                });
+                
+                poemListContainer.appendChild(poemItem);
+            });
+            
+            // 默认加载第一首词
+            loadPoem(1);
+        });
+        
+        // 加载词作函数
+        function loadPoem(id) {
+            const poem = poems.find(p => p.id === id);
+            
+            if (!poem) return;
+            
+            // 更新页面内容
+            document.getElementById('current-poem-title').textContent = `《${poem.title}》`;
+            document.getElementById('author-avatar').textContent = poem.author.charAt(0);
+            document.getElementById('author-name').textContent = poem.author;
+            document.getElementById('author-dynasty').textContent = `${poem.dynasty}${poem.authorBio.includes('号') || poem.authorBio.includes('字') ? '文学家' : '词人'}`;
+            document.getElementById('author-bio').textContent = poem.authorBio;
+            
+            // 格式化词内容
+            const poemContent = document.getElementById('poem-content');
+            poemContent.innerHTML = poem.content.split('\n').map(line => 
+                `<div class="poem-line">${line}</div>`
+            ).join('');
+            
+            // 更新赏析内容
+            document.getElementById('poem-analysis').textContent = poem.analysis;
+            document.getElementById('poem-background').textContent = poem.background;
+            document.getElementById('poem-features').textContent = poem.features;
+        }
+    </script>
 </body>
 </html>
